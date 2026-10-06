@@ -2,11 +2,11 @@
 {"id": "t02", "ticket": "비밀번호 재설정 메일이 안 와요. 스팸함도 확인했습니다.", "category": "account", "urgency": "medium"}
 {"id": "t03", "ticket": "다크 모드 지원 계획 있나요? 있으면 좋겠어요", "category": "feature_request", "urgency": "low"}
 {"id": "t04", "ticket": "앱이 실행하자마자 꺼집니다. 아이폰 15, iOS 최신 버전이에요. 업무에 계속 써야 해서 급합니다.", "category": "bug", "urgency": "high"}
-{"id": "t05", "ticket": "연간 구독을 월간으로 바꾸면 남은 금액은 환불되나요?", "category": "billing", "urgency": "medium"}
+{"id": "t05", "ticket": "연간 구독을 월간으로 바꾸면 남은 금액은 환불되나요?", "category": "billing", "urgency": "low", "note": "환불 가능 여부를 묻는 순수 문의 — 금전 손실·업무 중단이 아니므로 긴급도 기준상 low"}
 {"id": "t06", "ticket": "회사 계정에 팀원 5명을 추가하고 싶은데 메뉴를 못 찾겠어요.", "category": "how_to", "urgency": "low"}
 {"id": "t07", "ticket": "누가 제 계정으로 로그인한 기록이 있어요. 해외 IP예요. 해킹당한 것 같아요!!", "category": "account", "urgency": "high"}
 {"id": "t08", "ticket": "CSV 내보내기 하면 한글이 깨져요.", "category": "bug", "urgency": "medium"}
 {"id": "t09", "ticket": "슬랙이랑 연동되면 좋겠습니다. 알림을 슬랙으로 받고 싶어요.", "category": "feature_request", "urgency": "low"}
-{"id": "t10", "ticket": "세금계산서 발행은 어디서 신청하나요?", "category": "billing", "urgency": "low"}
+{"id": "t10", "ticket": "세금계산서 발행은 어디서 신청하나요?", "category": "billing", "urgency": "low", "note": "경계 사례: 사용법 문의 형태지만 세금계산서 발행은 청구 업무라 billing으로 라벨링"}
 {"id": "t11", "ticket": "대시보드 차트 기간을 90일로 바꾸는 방법 알려주세요", "category": "how_to", "urgency": "low"}
 {"id": "t12", "ticket": "어제 업데이트 이후로 저장 버튼을 눌러도 저장이 안 됩니다. 작업한 내용이 다 날아갔어요.", "category": "bug", "urgency": "high"}

@@ -1,6 +1,6 @@
 """2단계: LoRA 파인튜닝 (GPU 권장, 8GB VRAM이면 충분).
 
-pip install torch transformers peft trl datasets accelerate
+pip install "trl>=0.20" "transformers>=4.56" peft datasets accelerate torch
 python p12_finetune/train_lora.py --base Qwen/Qwen2.5-0.5B-Instruct --epochs 3
 """
 import argparse
@@ -20,7 +20,9 @@ ap.add_argument("--rank", type=int, default=16)
 a = ap.parse_args()
 
 ds = load_dataset("json", data_files={"train": str(HERE / "data/train.jsonl"), "test": str(HERE / "data/test.jsonl")})
-ds = ds.remove_columns(["key_fact", "doc"])
+# prompt-completion 형식: system+user가 prompt, assistant 답변이 completion (어떤 chat template에서도 동작)
+ds = ds.map(lambda ex: {"prompt": ex["messages"][:-1], "completion": ex["messages"][-1:]},
+            remove_columns=["messages", "key_fact", "doc"])
 
 peft_config = LoraConfig(
     r=a.rank, lora_alpha=a.rank * 2, lora_dropout=0.05, task_type="CAUSAL_LM",
@@ -29,8 +31,9 @@ peft_config = LoraConfig(
 args = SFTConfig(
     output_dir=str(HERE / "out"), num_train_epochs=a.epochs, learning_rate=a.lr,
     per_device_train_batch_size=8, gradient_accumulation_steps=2, lr_scheduler_type="cosine", warmup_ratio=0.05,
-    logging_steps=5, eval_strategy="epoch", save_strategy="epoch", bf16=True,
-    assistant_only_loss=True,  # 답변 토큰에만 loss
+    logging_steps=5, eval_strategy="epoch", save_strategy="epoch",
+    bf16=True,  # Ampere(RTX 30xx/A100) 이상 GPU 필요 — 그보다 오래된 GPU면 fp16=True로 바꾼다
+    completion_only_loss=True,  # 답변(completion) 토큰에만 loss — Qwen 템플릿에 {% generation %} 표시가 없어도 동작
     report_to="none",
 )
 trainer = SFTTrainer(model=a.base, args=args, train_dataset=ds["train"], eval_dataset=ds["test"], peft_config=peft_config)

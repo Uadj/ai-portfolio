@@ -13,6 +13,6 @@ services:
       - key: ANTHROPIC_API_KEY
         sync: false          # 배포 시 Render 화면에서 직접 입력
       - key: DAILY_BUDGET_USD
-        value: "1"           # 하루 Claude 사용 한도 (초과 시 LLM 기능 일시 중지)
+        value: "1"           # 하루 Claude 사용 한도 (초과 시 LLM 기능 일시 중지 · 프로세스 메모리 기준이라 재시작/슬립/재배포 시 0으로 초기화 · UTC 자정 기준)
       - key: LLM_REQUESTS_PER_HOUR
         value: "30"          # IP당 시간당 POST 요청 수

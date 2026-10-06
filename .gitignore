@@ -1,8 +1,9 @@
 .env
 __pycache__/
 data/*.db
-data/mcp_notes.json
+data/mcp_notes.*
 p12_finetune/out/
 evals/reports/
 .claude/
 eval-report.*
+.pytest_cache/

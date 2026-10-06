@@ -3,11 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- LLM·웹 검색 결과를 innerHTML로 그리므로 esc() 누락에 대비한 2차 방어. /docs(Swagger)에는 영향 없도록 헤더가 아닌 meta로 둔다 -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <title>AI Engineering Portfolio</title>
+  <meta name="description" content="RAG·에이전트·Eval·가드레일 등 15개 AI 엔지니어링 프로젝트를 직접 실행해 보는 포트폴리오">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Engineering Portfolio">
+  <meta property="og:description" content="RAG·에이전트·Eval·가드레일 등 15개 AI 엔지니어링 프로젝트를 직접 실행해 보는 포트폴리오">
+  <meta property="og:url" content="https://ai-portfolio-gwtu.onrender.com/">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 1l7 7-7 7-7-7z' fill='%23c2410c'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-  <link rel="stylesheet" href="/static/style.css?v=2">
+  <!-- 버전 고정 + 다이내믹 서브셋: 화면에 쓰인 글자 범위의 woff2만 받는다 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+  <link rel="stylesheet" href="/static/style.css?v=3">
 </head>
 <body>
   <header class="topbar">
@@ -16,17 +29,17 @@
       <a href="#/">프로젝트</a>
       <a href="#/about">아키텍처</a>
       <span id="llm-status" class="pill">상태 확인 중…</span>
-      <button id="theme-btn" class="icon-btn" title="테마 전환">◐</button>
+      <button id="theme-btn" class="icon-btn" title="테마 전환" aria-label="테마 전환">◐</button>
     </nav>
   </header>
   <main id="app"></main>
   <footer class="foot">FastAPI · Claude API · MCP · 15 projects</footer>
 
-  <script src="/static/js/core.js?v=2"></script>
-  <script src="/static/js/meta.js?v=2"></script>
-  <script src="/static/js/demos1.js?v=2"></script>
-  <script src="/static/js/demos2.js?v=2"></script>
-  <script src="/static/js/demos3.js?v=2"></script>
-  <script src="/static/js/app.js?v=2"></script>
+  <script src="/static/js/core.js?v=3"></script>
+  <script src="/static/js/meta.js?v=3"></script>
+  <script src="/static/js/demos1.js?v=3"></script>
+  <script src="/static/js/demos2.js?v=3"></script>
+  <script src="/static/js/demos3.js?v=3"></script>
+  <script src="/static/js/app.js?v=3"></script>
 </body>
 </html>
