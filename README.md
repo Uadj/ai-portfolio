@@ -2,6 +2,8 @@
 
 LLM API 기초부터 RAG, 에이전트, 평가, 파인튜닝, 프로덕션 게이트웨이, 보안까지 **15개 프로젝트를 한 사이트에서 직접 실행**해 볼 수 있는 포트폴리오입니다.
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Uadj/ai-portfolio)
+
 ## 빠른 시작
 
 ```bash
@@ -47,6 +49,15 @@ data/                   가상 회사 문서, 평가셋, 공격셋, SQLite DB(�
 static/                 프론트엔드 (빌드 없는 바닐라 JS)
 ```
 
+## 배포 (Render)
+
+위 버튼을 누르면 `render.yaml` 블루프린트로 웹 서비스가 만들어집니다. 배포 화면에서 `ANTHROPIC_API_KEY`만 입력하면 됩니다.
+
+공개 사이트용 비용 보호 장치가 들어 있습니다.
+- `DAILY_BUDGET_USD` (기본값 1): 하루 Claude 사용액이 이 금액을 넘으면 LLM 기능을 다음 날까지 멈춥니다. LLM이 필요 없는 측정 기능은 계속 동작합니다.
+- `LLM_REQUESTS_PER_HOUR` (기본값 30): IP당 시간당 POST 요청 수를 제한합니다.
+- 무료 플랜은 15분 동안 요청이 없으면 잠들고, 첫 요청 때 깨어나는 데 30초 정도 걸립니다. 디스크도 재배포할 때마다 초기화됩니다(MCP 노트, Eval 기록, 게이트웨이 통계).
+
 ## 설정
 
 | 변수 | 용도 |
@@ -55,6 +66,7 @@ static/                 프론트엔드 (빌드 없는 바닐라 JS)
 | `CLAUDE_MODEL` | 기본 모델 (기본값 `claude-opus-5-5`) |
 | `CLAUDE_FAST_MODEL` | 게이트웨이 경량 라우팅 모델 (기본값 `claude-haiku-4-5`) |
 | `GITHUB_TOKEN`, `GITHUB_WEBHOOK_SECRET` | #06 PR 자동 리뷰 |
+| `DAILY_BUDGET_USD`, `LLM_REQUESTS_PER_HOUR` | 공개 배포용 비용·남용 방지 (0이면 무제한) |
 | `OLLAMA_URL` | #13 벤치마크 대상 (기본값 `http://localhost:11434`) |
 
 `claude-opus-5-5` / `claude-sonnet-5-5` 호출에는 서버측 refusal fallback(`fallbacks: "default"`)이 켜져 있습니다.
