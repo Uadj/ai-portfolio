@@ -1,0 +1,4 @@
+고객 문의를 분류하고 답변하세요.
+category: billing, account, bug, feature_request, how_to 중 하나
+urgency: low, medium, high 중 하나
+reply: 고객에게 보낼 답변

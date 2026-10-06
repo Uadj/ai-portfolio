@@ -1,0 +1,18 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: ai-portfolio
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    healthCheckPath: /api/status
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: ANTHROPIC_API_KEY
+        sync: false          # 배포 시 Render 화면에서 직접 입력
+      - key: DAILY_BUDGET_USD
+        value: "3"           # 하루 Claude 사용 한도 (초과 시 LLM 기능 일시 중지)
+      - key: LLM_REQUESTS_PER_HOUR
+        value: "30"          # IP당 시간당 POST 요청 수

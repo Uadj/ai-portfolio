@@ -1,0 +1,8 @@
+anthropic==0.120.1
+fastapi==0.142.2
+uvicorn==0.54.0
+python-multipart==0.0.32
+numpy==2.2.6
+httpx==0.28.1
+pydantic==2.13.4
+mcp==2.3.0

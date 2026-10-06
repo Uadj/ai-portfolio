@@ -1,0 +1,23 @@
+# 프롬프트가 바뀐 PR마다 Eval을 돌리고 결과를 PR 코멘트로 남긴다. 점수가 떨어지면 체크 실패.
+name: prompt-eval
+on:
+  pull_request:
+    paths: ["evals/prompts/**", "evals/engine.py"]
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    permissions: { pull-requests: write }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - id: eval
+        run: python scripts/run_eval.py --baseline v1 --candidate v2
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        continue-on-error: true
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with: { path: eval-report.md }
+      - if: steps.eval.outcome == 'failure'
+        run: exit 1
